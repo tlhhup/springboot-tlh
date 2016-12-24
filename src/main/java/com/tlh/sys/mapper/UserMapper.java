@@ -1,8 +1,8 @@
 package com.tlh.sys.mapper;
 
-import java.util.List;
-
 import com.tlh.sys.entity.User;
+
+import java.util.List;
 
 public interface UserMapper {
 
@@ -13,5 +13,7 @@ public interface UserMapper {
 	int updateUser(User user) throws Exception;
 	
 	List<User> findUserInfos(User user) throws Exception;
+
+	User validateUserInfo(User user) throws Exception;
 	
 }

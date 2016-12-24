@@ -10,5 +10,9 @@
 	<select id="findUserInfos" parameterType="user" resultType="user">
 		SELECT * FROM sys_user
 	</select>
-	
+
+	<select id="validateUserInfo" parameterMap="user" resultMap="user">
+		SELECT * FROM sys_user where username=#{username} and password=#{password}
+	</select>
+
 </mapper>

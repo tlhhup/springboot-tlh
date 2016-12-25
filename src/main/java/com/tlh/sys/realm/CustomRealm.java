@@ -29,12 +29,16 @@ public class CustomRealm extends AuthorizingRealm {
 		try {
 			User validateUser = mUserService.validateUserInfo(user);
 			if(validateUser!=null){
-				return new SimpleAuthenticationInfo(userName,password,getName());
+				if(validateUser.isEnabled()){
+					return new SimpleAuthenticationInfo(userName,password,getName());
+				}else{
+					new DisabledAccountException("该用户不可用，请联系管理员");
+				}
 			}else{
-				new AccountException("用户名或密码错误");
+				throw new AccountException("用户名或密码错误");
 			}
 		} catch (Exception e) {
-
+				throw new AuthenticationException(e.getMessage());
 		}
 		return null;
 	}

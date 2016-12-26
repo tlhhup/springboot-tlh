@@ -4,15 +4,15 @@
 <mapper namespace="com.tlh.sys.mapper.UserMapper">
 	
 	<insert id="saveUser" parameterType="user">
-		INSERT INTO sys_user(username,password) VALUES(#{username},#{password}) 
+		INSERT INTO sys_users(userName,password) VALUES(#{username},#{password})
 	</insert>
 	
 	<select id="findUserInfos" parameterType="user" resultType="user">
-		SELECT * FROM sys_user
+		SELECT * FROM sys_users
 	</select>
 
 	<select id="validateUserInfo" parameterMap="user" resultMap="user">
-		SELECT * FROM sys_user where username=#{username} and password=#{password}
+		SELECT * FROM sys_users where username=#{userName} and password=#{password}
 	</select>
 
 </mapper>

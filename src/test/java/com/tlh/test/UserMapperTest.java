@@ -8,14 +8,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes=TlhApplication.class)
-@Transactional//每次操作之后回滚事务
 public class UserMapperTest {
 
 	@Autowired
@@ -24,7 +22,8 @@ public class UserMapperTest {
 	@Test
 	public void save() throws Exception{
 		User user=new User();
-		user.setUsername("张三");
+		user.setUsername("admin");
+		user.setRealName("管理员");
 		user.setPassword(DigestUtils.md5DigestAsHex("admin".getBytes()));
 		userMapper.saveUser(user);
 	}

@@ -3,13 +3,11 @@ package com.tlh.sys.config;
 import com.tlh.sys.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
+import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 /**
  * Created by hup on 2016/12/25.
@@ -18,15 +16,15 @@ import java.util.List;
 public class ShiroConfig {
 
     @Bean
-    SecurityManager securityManager(List<Realm> realms){
-        DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
-        securityManager.setRealms(realms);
-        return securityManager;
+    ShiroFilterChainDefinition shiroFilterChainDefinition(){
+        DefaultShiroFilterChainDefinition shiroFilterChainDefinition=new DefaultShiroFilterChainDefinition();
+        shiroFilterChainDefinition.addPathDefinition("/login","authc");
+        return shiroFilterChainDefinition;
     }
 
     @Bean
-    Realm realm(){
-        CustomRealm customRealm=new CustomRealm();
+    Realm realm() {
+        CustomRealm customRealm = new CustomRealm();
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher(Md5Hash.ALGORITHM_NAME);
         credentialsMatcher.setHashIterations(5);
         customRealm.setCredentialsMatcher(credentialsMatcher);

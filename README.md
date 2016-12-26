@@ -33,8 +33,8 @@
 		2. ShiroWebFilterConfiguration来自动配置ShiroFilterFactoryBean和FilterRegistrationBean对象
 	3. 在application.properties文件中配置如下信息
 
-			shiro.web.enabled=false//必须设置，开启自动配置
-			shiro.annotations.enabled=false
+			shiro.web.enabled=true//可以设置，默认自动开启自动配置
+			shiro.annotations.enabled=true
 	4. 定义Realm对象和加密方式
 		1. 定义类继承AuthorizingRealm抽象类处理用户认证和授权
 		2. 在配置类中将自定义的Realm定义为bean
@@ -72,3 +72,11 @@
 					}
 					
 				}
+	5. 配置Shiro权限过滤过滤器定义
+
+			@Bean
+		    ShiroFilterChainDefinition shiroFilterChainDefinition(){
+		        DefaultShiroFilterChainDefinition shiroFilterChainDefinition=new DefaultShiroFilterChainDefinition();
+		        shiroFilterChainDefinition.addPathDefinition("/login","authc");
+		        return shiroFilterChainDefinition;
+		    }

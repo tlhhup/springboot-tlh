@@ -25,7 +25,7 @@ public class CustomRealm extends AuthorizingRealm {
 		String password = token.getCredentials().toString();
 		User user=new User();
 		user.setPassword(password);
-		user.setUsername(userName);
+		user.setUserName(userName);
 		try {
 			User validateUser = mUserService.validateUserInfo(user);
 			if(validateUser!=null){

@@ -6,14 +6,14 @@ import com.tlh.sys.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes=TlhApplication.class)
+@SpringApplicationConfiguration(classes=TlhApplication.class)
 public class UserMapperTest {
 
 	@Autowired
@@ -22,7 +22,7 @@ public class UserMapperTest {
 	@Test
 	public void save() throws Exception{
 		User user=new User();
-		user.setUsername("admin");
+		user.setUserName("admin");
 		user.setRealName("管理员");
 		user.setPassword(DigestUtils.md5DigestAsHex("admin".getBytes()));
 		userMapper.saveUser(user);

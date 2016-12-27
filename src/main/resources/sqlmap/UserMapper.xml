@@ -4,15 +4,37 @@
 <mapper namespace="com.tlh.sys.mapper.UserMapper">
 	
 	<insert id="saveUser" parameterType="user">
-		INSERT INTO sys_users(userName,password) VALUES(#{username},#{password})
+		INSERT INTO sys_users(userName,password,realName,createTime,enabled) VALUES(#{username},#{password},#{realName},#{createTime},#{enabled})
 	</insert>
 	
 	<select id="findUserInfos" parameterType="user" resultType="user">
 		SELECT * FROM sys_users
 	</select>
 
-	<select id="validateUserInfo" parameterMap="user" resultType="user">
+	<select id="validateUserInfo" parameterType="user" resultType="user">
 		SELECT * FROM sys_users where username=#{userName} and password=#{password}
 	</select>
+
+	<delete id="deleteUser" parameterType="user">
+		DELETE FROM sys_users WHERE id=#{id}
+	</delete>
+
+	<update id="updateUser" parameterType="user">
+		UPDATE sys_users
+		<set>
+			<if test="realName!=null and realName!=''">
+				realName=#{realName},
+			</if>
+			<if test="password!=null and password!=''">
+				password=#{password},
+			</if>
+			<if test="createTime!=null">
+				createTime=#{createTime}
+			</if>
+		</set>
+		<where>
+			id=#{id}
+		</where>
+	</update>
 
 </mapper>

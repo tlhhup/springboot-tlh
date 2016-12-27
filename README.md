@@ -9,7 +9,7 @@
 	2. 自动配置：Spring Boot通过org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration来实现对Mybatis的自动配置，可通过application.properties文件中前缀为mybatis的属性设置mybatis的信息。其自动配置的信息如下
 		1. SqlSessionFactory对象
 		2. SqlSessionTemplate对象
-	3. 在配置类添加@MapperScan注解来开启对Mybatis的Mapper代理的扫描
+	3. 在配置类添加@MapperScan注解来开启对Mybatis的Mapper代理的扫描或者在代理类添加@Mapper注解
 		
 			@SpringBootApplication
 			@MapperScan(basePackages="com.tlh.**.mapper")
@@ -20,6 +20,13 @@
 				}
 			
 			}
+	4. 在application.properties文件中指定实体列名的包及mapper文件的路径
+
+			#mybatis
+			mybatis.typeAliasesPackage=com.tlh.sys.entity
+			mybatis.mapperLocations=classpath*:sqlmap/*Mapper.xml
+	4. **注意事项**
+		1. Mapper的映射文件必须放在src/main/resources目录下(原因为maven在进行编译之后不会将src/main/java下面的非java文件编译到target/classes目录下)
 2. 整合shiro
 	1. 添加依赖
 

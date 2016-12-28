@@ -25,7 +25,7 @@ public class LoginController {
         if(principal==null){
             return "redirect:/login";
         }
-        return "home";
+        return "sys/home";
     }
 
 }

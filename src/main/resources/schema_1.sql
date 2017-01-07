@@ -5,7 +5,7 @@ userName varchar(100) unique comment '用户名',
 password varchar(64) not null,
 realName varchar(100) not null,
 createTime timestamp,
-enabled tinyint comment '用户状态 1 启用 0 可以用'
+enabled tinyint comment '用户状态 1 启用 0 禁用'
 );
 -- 角色表
 create table sys_roles(

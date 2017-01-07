@@ -3209,6 +3209,7 @@ table.text-center th {
   font-size: 35px;
   text-align: center;
   font-weight: 300;
+  padding-top:5px;
   background:#fff;
 }
 .login-logo a,
@@ -3244,9 +3245,9 @@ table.text-center th {
 }
 .login-box-msg,
 .register-box-msg {
-  margin: 0;
+  margin: 5px 0;
   text-align: center;
-  padding: 0 20px 20px 20px;
+  padding: 2px 0;
 }
 .social-auth-links {
   margin: 10px 0;

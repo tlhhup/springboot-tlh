@@ -11,7 +11,7 @@
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
 	<!-- Theme style -->
-	<link rel="stylesheet" th:href="@{/css/tlh.css}"/>
+	<link rel="stylesheet" th:href="@{/tlh/css/tlh.css}"/>
 	<!-- iCheck -->
 	<link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}"/>
 
@@ -44,7 +44,7 @@
 	</div>
 	<!-- /.login-logo -->
 	<div class="login-box-body">
-		<p class="login-box-msg" th:if="${msg!=null}"><span th:text="${msg}"/></p>
+		<p class="login-box-msg bg-danger" th:if="${msg!=null}"><span th:text="${msg}"/></p>
 		<form action="/login" th:action="@{/login}" method="post">
 			<div class="form-group has-feedback">
 				<input type="text" class="form-control" placeholder="用户名" name="username"/>

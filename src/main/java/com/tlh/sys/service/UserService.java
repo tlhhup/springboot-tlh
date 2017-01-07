@@ -7,6 +7,6 @@ import com.tlh.sys.entity.User;
  */
 public interface UserService {
 
-    User validateUserInfo(User user) throws Exception;
+    User validateUserInfo(String userName);
 
 }

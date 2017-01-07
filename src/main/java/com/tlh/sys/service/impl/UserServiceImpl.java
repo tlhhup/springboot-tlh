@@ -18,7 +18,12 @@ public class UserServiceImpl implements UserService {
     private UserMapper mUserMapper;
 
     @Override
-    public User validateUserInfo(User user) throws Exception {
-        return mUserMapper.validateUserInfo(user);
+    public User validateUserInfo(String userName)  {
+        try {
+            return mUserMapper.validateUserInfo(userName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

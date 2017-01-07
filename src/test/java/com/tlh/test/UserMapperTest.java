@@ -3,6 +3,7 @@ package com.tlh.test;
 import com.tlh.TlhApplication;
 import com.tlh.sys.entity.User;
 import com.tlh.sys.mapper.UserMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,13 @@ public class UserMapperTest {
 		user.setPassword(DigestUtils.md5DigestAsHex("admin".getBytes()));
 		userMapper.saveUser(user);
 	}
-	
+
+	@Test
+	public void validate() throws Exception{
+		User validateUserInfo = userMapper.validateUserInfo("admin");
+		Assert.assertNotNull(validateUserInfo);
+	}
+
 	@Test
 	public void findUserInfo() throws Exception{
 		List<User> users = userMapper.findUserInfos(null);

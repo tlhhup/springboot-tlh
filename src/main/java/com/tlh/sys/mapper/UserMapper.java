@@ -16,6 +16,6 @@ public interface UserMapper {
 	
 	List<User> findUserInfos(User user) throws Exception;
 
-	User validateUserInfo(User user) throws Exception;
+	User validateUserInfo(String userName) throws Exception;
 	
 }

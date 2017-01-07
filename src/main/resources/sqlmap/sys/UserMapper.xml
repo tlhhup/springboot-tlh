@@ -11,8 +11,8 @@
 		SELECT * FROM sys_users
 	</select>
 
-	<select id="validateUserInfo" parameterType="user" resultType="user">
-		SELECT * FROM sys_users where username=#{userName} and password=#{password}
+	<select id="validateUserInfo" parameterType="string" resultType="user">
+		SELECT * FROM sys_users where username=#{userName}
 	</select>
 
 	<delete id="deleteUser" parameterType="user">

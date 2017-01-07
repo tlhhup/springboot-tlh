@@ -37,4 +37,28 @@
 		</where>
 	</update>
 
+	<select id="findRoles" resultType="string" parameterType="string">
+		SELECT
+			sr.roleName
+		FROM
+			sys_roles sr
+		INNER JOIN sys_user_role_links sur ON sr.id = sur.role_id
+		INNER JOIN sys_users su ON sur.user_id = su.id
+		WHERE
+			su.userName =#{value}
+	</select>
+
+	<select id="findPermissions" resultType="string" parameterType="string">
+		SELECT
+			srr.url
+		FROM
+			sys_rights srr
+		INNER JOIN sys_role_right_links srrl ON srr.id = srrl.right_id
+		INNER JOIN sys_roles sr ON srrl.role_id = sr.id
+		INNER JOIN sys_user_role_links sur ON sr.id = sur.role_id
+		INNER JOIN sys_users su ON sur.user_id = su.id
+		WHERE
+			su.userName =#{value}
+	</select>
+
 </mapper>

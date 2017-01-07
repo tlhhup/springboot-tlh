@@ -4,6 +4,7 @@ import com.tlh.sys.entity.User;
 import com.tlh.sys.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,11 @@ public class CustomRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        String userName = principals.getPrimaryPrincipal().toString();
+        SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
+        authorizationInfo.addRoles(mUserService.findRoles(userName));
+        authorizationInfo.addStringPermissions(mUserService.findPermissions(userName));
+        return authorizationInfo;
     }
 
     @Override

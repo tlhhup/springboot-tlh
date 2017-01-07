@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+
 /**
  * Created by hup on 2016/12/24.
  */
@@ -25,5 +27,15 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Collection<String> findRoles(String userName) {
+        return mUserMapper.findRoles(userName);
+    }
+
+    @Override
+    public Collection<String> findPermissions(String userName) {
+        return mUserMapper.findPermissions(userName);
     }
 }

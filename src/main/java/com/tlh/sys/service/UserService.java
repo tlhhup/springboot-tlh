@@ -3,6 +3,7 @@ package com.tlh.sys.service;
 import com.tlh.sys.entity.User;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by hup on 2016/12/24.
@@ -52,5 +53,13 @@ public interface UserService {
      * @throws Exception
      */
     boolean updateUserInfo(User user) throws Exception;
+
+    /**
+     * 查询用户信息
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    List<User> findUserInfos(User user) throws Exception;
 
 }

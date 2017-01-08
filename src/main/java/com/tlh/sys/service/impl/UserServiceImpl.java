@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by hup on 2016/12/24.
@@ -61,6 +62,11 @@ public class UserServiceImpl implements UserService {
     public boolean updateUserInfo(User user) throws Exception {
         prepareUser(user);
         return this.mUserMapper.updateUser(user)>0;
+    }
+
+    @Override
+    public List<User> findUserInfos(User user) throws Exception {
+        return this.mUserMapper.findUserInfos(user);
     }
 
     private void prepareUser(User user){

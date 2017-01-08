@@ -1,5 +1,6 @@
 package com.tlh.sys.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.tlh.sys.security.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Md5Hash;
@@ -30,6 +31,11 @@ public class ShiroConfig {
         credentialsMatcher.setHashIterations(1);
         customRealm.setCredentialsMatcher(credentialsMatcher);
         return customRealm;
+    }
+
+    @Bean
+    ShiroDialect shiroDialect(){
+        return new ShiroDialect();
     }
 
 }

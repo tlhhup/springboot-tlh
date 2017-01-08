@@ -146,3 +146,97 @@
 				        <td>指定的用户可以访问(认证过并且记住我的)</td>
 				    </tr>
 				</table>
+4. thymeleaf整合shiro：https://github.com/theborakompanioni/thymeleaf-extras-shiro
+	1. 添加依赖：thymeleaf-extras-shiro
+
+			<dependency>
+	            <groupId>com.github.theborakompanioni</groupId>
+	            <artifactId>thymeleaf-extras-shiro</artifactId>
+	            <version>2.0.0</version>
+	        </dependency>
+		1. 说明(不同版本的区别)
+			1. 2.0.0:
+				1. Thymeleaf version 3.0.2.RELEASE
+				2. Shiro version 1.3.2
+			3. 1.2.1：
+				1. Thymeleaf version 2.1.4
+				2. Shiro version 1.2.4
+			3. 1.1.0：
+				1. Thymeleaf version 2.1.0
+				2. Shiro version 1.2.2
+			3. 1.0.2：
+				1. Thymeleaf version 2.0.18
+				2. Shiro version 1.2.2
+			3. 1.0.1：
+				1. Thymeleaf version 2.0.15
+				2. Shiro version 1.2.1 
+	3. 在shiro的配置类中添加方言Bean
+
+			@Bean
+		    ShiroDialect shiroDialect(){
+		        return new ShiroDialect();
+		    }
+	2. 界面引入命名空间
+
+			<html xmlns:th="http://www.thymeleaf.org"
+     			  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+	3. 标签:(可以查看引入包中的Shiro-Dialect.xml文件)
+		1. guest tag
+
+				<p shiro:guest="">
+				  Please <a href="login.html">Login</a>
+				</p>
+		2. user tag
+
+				<p shiro:user="">
+				  Welcome back John! Not John? Click <a href="login.html">here<a> to login.
+				</p>
+		3. authenticated tag
+
+				<a shiro:authenticated="" href="updateAccount.html">Update your contact information</a>
+		4. notAuthenticated tag
+
+				<p shiro:notAuthenticated="">
+				  Please <a href="login.html">login</a> in order to update your credit card information.
+				</p>
+		5. principal tag
+
+				<p>Hello, <span shiro:principal=""></span>, how are you today?</p>
+				或者
+				<p>Hello, <shiro:principal/>, how are you today?</p>
+		6. hasRole tag
+
+				<a shiro:hasRole="administrator" href="admin.html">Administer the system</a>
+		7. lacksRole tag
+
+				<p shiro:lacksRole="administrator">
+				  Sorry, you are not allowed to administer the system.
+				</p>
+		8. hasAllRoles tag
+
+				<p shiro:hasAllRoles="developer, project manager">
+				  You are a developer and a project manager.
+				</p>
+		8. hasAnyRoles tag
+
+				<p shiro:hasAnyRoles="developer, project manager, administrator">
+				  You are a developer, project manager, or administrator.
+				</p>
+		9. hasPermission tag
+
+			<a shiro:hasPermission="user:create" href="createUser.html">Create a new User</a>
+		10. lacksPermission tag
+
+				<p shiro:lacksPermission="user:delete">
+				  Sorry, you are not allowed to delete user accounts.
+				</p>
+		11. hasAllPermissions tag
+
+				<p shiro:hasAllPermissions="user:create, user:delete">
+				  You can create and delete users.
+				</p>
+		12. hasAnyPermissions tag
+
+				<p shiro:hasAnyPermissions="user:create, user:delete">
+				  You can create or delete users.
+				</p>

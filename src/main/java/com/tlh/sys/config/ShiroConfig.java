@@ -1,6 +1,6 @@
 package com.tlh.sys.config;
 
-import com.tlh.sys.realm.CustomRealm;
+import com.tlh.sys.security.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.Realm;

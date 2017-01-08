@@ -4,7 +4,7 @@
 <mapper namespace="com.tlh.sys.mapper.UserMapper">
 	
 	<insert id="saveUser" parameterType="user">
-		INSERT INTO sys_users(userName,password,realName,createTime,enabled) VALUES(#{username},#{password},#{realName},#{createTime},#{enabled})
+		INSERT INTO sys_users(userName,password,realName,createTime,enabled,salt) VALUES(#{username},#{password},#{realName},#{createTime},#{enabled},#{salt})
 	</insert>
 	
 	<select id="findUserInfos" parameterType="user" resultType="user">

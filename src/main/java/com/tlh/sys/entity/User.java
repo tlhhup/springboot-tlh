@@ -9,6 +9,7 @@ public class User implements Serializable {
     private int id;
     private String userName;
     private String password;
+    private String salt;//盐
     private String realName;
     private Date createTime;
     private boolean enabled;
@@ -70,5 +71,13 @@ public class User implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

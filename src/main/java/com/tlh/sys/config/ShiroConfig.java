@@ -7,6 +7,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,6 +16,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ShiroConfig {
+
+    @Autowired
+    private TlhProperties mTlhProperties;
 
     @Bean
     ShiroFilterChainDefinition shiroFilterChainDefinition(){
@@ -28,7 +32,7 @@ public class ShiroConfig {
     Realm realm() {
         CustomRealm customRealm = new CustomRealm();
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher(Md5Hash.ALGORITHM_NAME);
-        credentialsMatcher.setHashIterations(1);
+        credentialsMatcher.setHashIterations(mTlhProperties.getHashIterations());
         customRealm.setCredentialsMatcher(credentialsMatcher);
         return customRealm;
     }

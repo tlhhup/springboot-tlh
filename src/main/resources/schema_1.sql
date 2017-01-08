@@ -3,6 +3,7 @@ create table sys_users(
 id int primary key auto_increment comment '主键',
 userName varchar(100) unique comment '用户名',
 password varchar(64) not null,
+salt varchar(100) not null comment '盐',
 realName varchar(100) not null,
 createTime timestamp,
 enabled tinyint comment '用户状态 1 启用 0 禁用'

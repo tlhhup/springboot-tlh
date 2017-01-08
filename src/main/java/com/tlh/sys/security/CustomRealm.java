@@ -9,6 +9,7 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
@@ -59,7 +60,7 @@ public class CustomRealm extends AuthorizingRealm {
         User validateUser = mUserService.validateUserInfo(userName);
         if (validateUser != null) {
             if (validateUser.isEnabled()) {
-                return new SimpleAuthenticationInfo(userName, validateUser.getPassword(), getName());
+                return new SimpleAuthenticationInfo(userName, validateUser.getPassword(), ByteSource.Util.bytes(validateUser.getSalt()), getName());
             } else {
                 throw new DisabledAccountException("该用户不可用，请联系管理员");
             }

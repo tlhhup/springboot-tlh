@@ -29,4 +29,28 @@ public interface UserService {
      * @return
      */
     Collection<String> findPermissions(String userName);
+
+    /**
+     * 保存用户信息
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    boolean saveUserInfo(User user) throws Exception;
+
+    /**
+     * 删除用户
+     * @param user
+     * @return
+     */
+    boolean deleteUserInfo(User user) throws Exception;
+
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    boolean updateUserInfo(User user) throws Exception;
+
 }

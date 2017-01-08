@@ -42,6 +42,10 @@
 
 			shiro.web.enabled=true//可以设置，默认自动开启自动配置
 			shiro.annotations.enabled=true
+			//认证界面
+			shiro.loginUrl=/login
+			//认证成功的界面
+			shiro.successUrl=/home
 	4. 定义Realm对象和加密方式
 		1. 定义类继承AuthorizingRealm抽象类处理用户认证和授权
 		2. 在配置类中将自定义的Realm定义为bean
@@ -79,7 +83,7 @@
 					}
 					
 				}
-	5. 配置Shiro权限过滤过滤器定义
+	5. 配置Shiro权限过滤过滤器定义：Shiro可以通过配置文件实现基于URL的授权验证。
 
 			@Bean
 		    ShiroFilterChainDefinition shiroFilterChainDefinition(){
@@ -87,19 +91,58 @@
 		        shiroFilterChainDefinition.addPathDefinition("/login","authc");
 		        return shiroFilterChainDefinition;
 		    }
-		1. 内置的权限过滤器
-			
-			anon	org.apache.shiro.web.filter.authc.AnonymousFilter
-			authc	org.apache.shiro.web.filter.authc.FormAuthenticationFilter
-			authcBasic	
-			org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter
-			perms	
-			org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter
-			port	
-			org.apache.shiro.web.filter.authz.PortFilter
-			rest	
-			org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter
-			roles	
-			org.apache.shiro.web.filter.authz.RolesAuthorizationFilter
-			ssl	org.apache.shiro.web.filter.authz.SslFilter
-			user	org.apache.shiro.web.filter.authc.UserFilter
+		1. FilterChain定义格式： URL_Ant_Path_Expression = Path_Specific_Filter_Chain 
+		2. 每个URL配置，表示匹配该URL的应用程序请求将由对应的过滤器进行验证。 
+			1. 内置的权限过滤器
+				<table>
+				    <tr>
+				        <td>名称</td>
+				        <td>实现类</td>
+				        <td>说明</td>
+				    </tr>
+				    <tr>
+				        <td>anon</td>
+				        <td>org.apache.shiro.web.filter.authc.AnonymousFilter</td>
+				        <td>不需要进行安全认证即可访问资源</td>
+				    </tr>
+				    <tr>
+				        <td>authc</td>
+				        <td>org.apache.shiro.web.filter.authc.FormAuthenticationFilter</td>
+				        <td>需要进行认证才能访问资源</td>
+				    </tr>
+				    <tr>
+				        <td>authcBasic</td>
+				        <td>org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter</td>
+				        <td>需要进行认证才能访问资源</td>
+				    </tr>
+				    <tr>
+				        <td>perms</td>
+				        <td>org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter</td>
+				        <td>需要当前用户具有该权限才能访问</td>
+				    </tr>
+				    <tr>
+				        <td>port</td>
+				        <td>org.apache.shiro.web.filter.authz.PortFilter</td>
+				        <td>要求访问资源的端口必须为指定的端口</td>
+				    </tr>
+				    <tr>
+				        <td>rest</td>
+				        <td>org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter</td>
+				        <td>请求方法过滤</td>
+				    </tr>
+				    <tr>
+				        <td>roles</td>
+				        <td>org.apache.shiro.web.filter.authz.RolesAuthorizationFilter</td>
+				        <td>需要当前用户具有该角色才能访问</td>
+				    </tr>
+				    <tr>
+				        <td>ssl</td>
+				        <td>org.apache.shiro.web.filter.authz.SslFilter</td>
+				        <td>SSL认证过滤</td>
+				    </tr>
+				    <tr>
+				        <td>user</td>
+				        <td>org.apache.shiro.web.filter.authc.UserFilter</td>
+				        <td>指定的用户可以访问(认证过并且记住我的)</td>
+				    </tr>
+				</table>

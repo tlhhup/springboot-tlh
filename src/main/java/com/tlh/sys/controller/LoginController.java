@@ -18,6 +18,11 @@ public class LoginController {
 
     @RequestMapping(value="/login",method= RequestMethod.GET)
     public String login(){
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        //如果登陆过
+        if(principal!=null){
+            return "sys/home";
+        }
         return "login";
     }
 
@@ -34,7 +39,18 @@ public class LoginController {
         if(principal==null){
             return "redirect:/login";
         }
+        return "redirect:/home";
+    }
+
+    @RequestMapping("/home")
+    public String home(){
         return "sys/home";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.setAttribute("msg","退出成功");
+        return "login";
     }
 
 }

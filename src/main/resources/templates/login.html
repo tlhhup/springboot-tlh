@@ -45,7 +45,7 @@
 	<!-- /.login-logo -->
 	<div class="login-box-body">
 		<p class="login-box-msg bg-danger" th:if="${msg!=null}"><span th:text="${msg}"/></p>
-		<form action="/login" th:action="@{/login}" method="post">
+		<form th:action="@{/login}" method="post">
 			<div class="form-group has-feedback">
 				<input type="text" class="form-control" placeholder="用户名" name="username"/>
 				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>

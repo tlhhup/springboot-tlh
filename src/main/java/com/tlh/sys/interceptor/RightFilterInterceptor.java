@@ -23,7 +23,7 @@ public class RightFilterInterceptor implements HandlerInterceptor {
         Object principal = SecurityUtils.getSubject().getPrincipal();
         if(principal==null){
             httpServletRequest.setAttribute("msg","请重新登陆");
-            httpServletRequest.getRequestDispatcher("login").forward(httpServletRequest,httpServletResponse);
+            httpServletRequest.getRequestDispatcher("/login").forward(httpServletRequest,httpServletResponse);
             return false;
         }
         return true;

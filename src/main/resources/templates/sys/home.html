@@ -73,6 +73,20 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+        $(function(){
+            $(".treeview-menu li a").click(function(){
+                var url=$(this).attr("href");
+                $.ajax({
+                    url:url,
+                    dataType:'html',
+                    success:function(data){
+                        $(".content-wrapper").html(data);
+                    }
+                });
+            });
+        })
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -379,7 +393,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a th:href="@{/sys/user/index}"><i class="fa fa-group"></i>用户管理</a></li>
+                        <li><a th:href="@{/sys/user/index}" onclick="return false"><i class="fa fa-group"></i>用户管理</a></li>
                         <li><a href="#"><i class="fa fa-user"></i>角色管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>菜单管理</a></li>
                     </ul>

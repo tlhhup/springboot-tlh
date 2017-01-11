@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tlh.sys.mapper.RoleMapper">
+
     <insert id="saveRole" parameterType="role">
-        INSERT INTO sys_roles(roleName) VALUES (#{roleName})
+        INSERT INTO sys_roles(roleName,description,available) VALUES (#{roleName},#{description},#{available})
     </insert>
 
     <delete id="deleteRole" parameterType="role">
@@ -11,10 +12,21 @@
     </delete>
 
     <update id="updateRole" parameterType="role">
-        update sys_roles set roleName=#{roleName} where id=#{id}
+        update sys_roles
+        <set>
+            <if test="roleName!=null and roleName!=''">
+                roleName=#{roleName},
+            </if>
+            <if test="description!=null and description!=''">
+                description=#{description}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
     </update>
 
-    <select id="findRoles" parameterType="role">
+    <select id="findRoles" parameterType="role" resultType="role">
         select * from sys_roles
     </select>
 

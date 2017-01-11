@@ -12,7 +12,8 @@ public class Right implements Serializable {
     private int priority;//排列顺序
     private int parent_id;//父级权限
     private boolean available;//是否可用
-    private String type;
+    private String type;//权限类型
+    private String icon;//图标
 
     public int getId() {
         return id;
@@ -68,5 +69,13 @@ public class Right implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

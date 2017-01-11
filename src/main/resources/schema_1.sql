@@ -28,7 +28,8 @@ id int primary key auto_increment comment '主键',
 name varchar(100) comment '权限名称',
 url varchar(100) comment '资源地址'
 );
-ALTER TABLE sys_rights ADD (priority int COMMENT '显示顺序',parent_id int COMMENT '父级编号',available TINYINT COMMENT '是否可用',type VARCHAR(50) COMMENT '资源类型')
+ALTER TABLE sys_rights ADD (priority int COMMENT '显示顺序',parent_id int COMMENT '父级编号',available TINYINT COMMENT '是否可用',type VARCHAR(50) COMMENT '资源类型');
+ALTER table sys_rights add icon VARCHAR(100) COMMENT '菜单图标';
 -- 角色权限表
 create table sys_role_right_links(
 role_id int,

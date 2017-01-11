@@ -2,7 +2,6 @@ package com.tlh.sys.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 public class User implements Serializable {
 
@@ -13,9 +12,6 @@ public class User implements Serializable {
     private String realName;
     private Date createTime;
     private boolean enabled;
-
-    //与角色的多对多关系
-    private List<Role> roles;
 
     public int getId() {
         return id;
@@ -63,14 +59,6 @@ public class User implements Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 
     public String getSalt() {

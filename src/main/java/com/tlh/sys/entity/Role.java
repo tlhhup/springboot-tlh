@@ -1,7 +1,6 @@
 package com.tlh.sys.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by ping on 2016/12/25.
@@ -10,8 +9,8 @@ public class Role implements Serializable {
 
     private int id;
     private String roleName;
-    //与权限的多对多关系
-    private List<Right> rights;
+    private String description;
+    private  boolean available;//是否可用
 
     public int getId() {
         return id;
@@ -29,11 +28,19 @@ public class Role implements Serializable {
         this.roleName = roleName;
     }
 
-    public List<Right> getRights() {
-        return rights;
+    public String getDescription() {
+        return description;
     }
 
-    public void setRights(List<Right> rights) {
-        this.rights = rights;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

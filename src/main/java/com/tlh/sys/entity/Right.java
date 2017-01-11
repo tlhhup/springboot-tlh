@@ -9,6 +9,10 @@ public class Right implements Serializable {
     private int id;
     private String name;
     private String url;
+    private int priority;//排列顺序
+    private int parent_id;//父级权限
+    private boolean available;//是否可用
+    private String type;
 
     public int getId() {
         return id;
@@ -32,5 +36,37 @@ public class Right implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public int getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -93,7 +93,7 @@
 		    }
 		1. FilterChain定义格式： URL_Ant_Path_Expression = Path_Specific_Filter_Chain 
 		2. 每个URL配置，表示匹配该URL的应用程序请求将由对应的过滤器进行验证。 
-			1. 内置的权限过滤器
+			1. 内置的权限过滤器(别名都在DefaultFilter枚举中定义)
 				<table>
 				    <tr>
 				        <td>名称</td>

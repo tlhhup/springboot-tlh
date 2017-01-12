@@ -36,7 +36,9 @@
 				<version>1.4.0-RC2</version>
 			</dependency>
 	2. 自动配置：Spring Boot通过org.apache.shiro.spring.config.web.autoconfigure包完成对shiro的自动配置，其自动配置的信息如下
-		1. ShiroWebAutoConfiguration来自动配置SessionsSecurityManager对象
+		1. ShiroWebAutoConfiguration来自动配置SessionsSecurityManager、会话管理、记住我管理等核心对象，并且可以通过配置设置会话管理和记住我的cookie信息(具体属性名查看AbstractShiroWebConfiguration类)
+			1. 说明
+				1. 记住我：表示的是访问指定地址的资源是只要身份验证通过或RememberMe登录的都可以。
 		2. ShiroWebFilterConfiguration来自动配置ShiroFilterFactoryBean和FilterRegistrationBean对象
 	3. 在application.properties文件中配置如下信息
 
